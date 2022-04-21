@@ -17,5 +17,5 @@ touch /home/donedisk.txt
 # Install and Run FIO (Adjust runtime according to needs... it's set to run for 1 hour)
 apt update
 apt install fio -y
-fio --directory=/mnt/datadisk --name=randrw2.dat --ioengine=libaio --iodepth=128 --rw=randwrite --bs=8k --direct=1 --numjobs=1 --runtime=3000 --group_reporting --time_based &>/dev/null &
+fio --directory=/mnt/datadisk --name=randrw2.dat --ioengine=libaio --iodepth=128 --rw=randwrite --bs=8k --direct=1 --numjobs=1 --runtime=3000 --size=3000000 --group_reporting --time_based &>/dev/null &
 touch /home/triggeredfio.txt
