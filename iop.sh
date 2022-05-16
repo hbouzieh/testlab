@@ -1,5 +1,6 @@
 #!/bin/bash
-#test script please DO NOT USE
+# Test script please DO NOT USE it
+# version 0.1 alpha
 touch /home/start.txt
 # Dettect data disk
 DISK=$(lsblk | grep 128 |awk '{ print $1 }')
