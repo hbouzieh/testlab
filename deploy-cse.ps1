@@ -1,5 +1,5 @@
 # CSE deployment script
-# v0.1 alpha
+# v0.2 alpha
 $ErrorActionPreference = "Stop"
 
 Connect-AzAccount
