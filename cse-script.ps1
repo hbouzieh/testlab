@@ -19,6 +19,7 @@ function Run-CPU-Cycles {
     ForEach ($core in 1..$NumberOfLogicalProcessors) { 
 
         start-job -ScriptBlock {
+            Write-EventLog -Message "Starting $core thread" -LogName "Application" -Source EventSystem -EventId 1010 -EntryType Information
             while ($true) {
                 $result = ++ $result
                 $result = -- $result
