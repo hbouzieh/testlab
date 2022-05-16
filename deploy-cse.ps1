@@ -13,7 +13,7 @@ $protectedSettings = @{"storageAccountName" = $storageAcctName; "storageAccountK
 $resourceGroupName = "lab-01-77"
 $location = "northeurope"
 $vmName = "vmx-ne-cpuutil-01-02"
-$deployTag =  "tag" + -join ((65..90) + (97..122) | Get-Random -Count 5 | ForEach-Object {[char]$_})
+$deployTag =  "tag-" + -join ((65..90) + (97..122) | Get-Random -Count 5 | ForEach-Object {[char]$_})
 
 Write-Host "Deplying extenstion to" $vmName
 
