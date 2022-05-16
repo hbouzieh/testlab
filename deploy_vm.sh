@@ -7,7 +7,7 @@ VMNAME=vmx-$DCN-$HOSTNAME
 IMAGE=MicrosoftWindowsServer:WindowsServer:2019-Datacenter-smalldisk:latest
 SIZE=Standard_D2as_v4
 ADM=adm-01
-PASS="P@ssw0rd-123"
+PASS=""
 # DEFAULTS
 RG=lab-$DC-01
 NRG=lab-$DC-01
