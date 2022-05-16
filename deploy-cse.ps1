@@ -16,7 +16,7 @@ $vmName = "vmx-ne-cpuutil-01-02"
 $deployTag =  "tag" + -join ((65..90) + (97..122) | Get-Random -Count 5 | ForEach-Object {[char]$_})
 
 Write-Host "Deplying extenstion to" $vmName
-Write-Host $deployTag 
+
 Set-AzVMExtension -ResourceGroupName $resourceGroupName `
     -Location $location `
     -VMName $vmName `
