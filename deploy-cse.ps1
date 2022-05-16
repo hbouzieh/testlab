@@ -8,7 +8,7 @@ $fileUri = @("https://raw.githubusercontent.com/hbouzieh/testlab/main/cse-script
 
 $settings = @{"fileUris" = $fileUri};
 
-$protectedSettings = @{"storageAccountName" = $storageAcctName; "storageAccountKey" = $storageKey; "commandToExecute" = "powershell -ExecutionPolicy Unrestricted -File cse-script.ps1"};
+$protectedSettings = @{"commandToExecute" = "powershell -ExecutionPolicy Unrestricted -File cse-script.ps1"};
 
 $resourceGroupName = "lab-01-77"
 $location = "northeurope"
