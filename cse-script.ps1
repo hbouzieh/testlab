@@ -23,8 +23,9 @@ function Run-CPU-Cycles {
             } 
         }
 
-        #Stop-Job * 
+        # Stop-Job * 
     }
 }
 
+Start-Sleep -Seconds 120
 Run-CPU-Cycles

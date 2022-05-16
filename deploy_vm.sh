@@ -3,9 +3,9 @@
 SUB=c8be08fd-adfc-4cd8-a24a-95960884bccb
 DC=01
 LABN=77
-DCN=wu2
-LOC=westus2
-PREFIX=devops
+DCN=ne
+LOC=northeurope
+PREFIX=cpuutil
 VMN=02
 ADM=adm-01
 PASS=""
@@ -15,7 +15,7 @@ HOSTNAME=$PREFIX-$DC-$VMN
 VMNAME=vmx-$DCN-$HOSTNAME
 IMAGE=MicrosoftWindowsServer:WindowsServer:2019-Datacenter-smalldisk:latest
 SIZE=Standard_D2as_v4
-VIPSKU=Basic 
+VIPSKU=Basic
 STORSKU=Premium_LRS
 # DEFAULTS
 NRG=lab-$DC-01

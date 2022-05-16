@@ -1,20 +1,29 @@
-$fileUri = @("https://xxxxxxx.blob.core.windows.net/buildServer1/1_Add_Tools.ps1",
-"https://xxxxxxx.blob.core.windows.net/buildServer1/2_Add_Features.ps1",
-"https://xxxxxxx.blob.core.windows.net/buildServer1/3_CompleteInstall.ps1")
+# CSE deployment script
+# v0.1 alpha
+$ErrorActionPreference = "Stop"
+
+Connect-AzAccount
+
+$fileUri = @("https://raw.githubusercontent.com/hbouzieh/testlab/main/cse-script.ps1")
 
 $settings = @{"fileUris" = $fileUri};
 
-$storageAcctName = "xxxxxxx"
-$storageKey = "1234ABCD"
-$protectedSettings = @{"storageAccountName" = $storageAcctName; "storageAccountKey" = $storageKey; "commandToExecute" = "powershell -ExecutionPolicy Unrestricted -File 1_Add_Tools.ps1"};
+$protectedSettings = @{"storageAccountName" = $storageAcctName; "storageAccountKey" = $storageKey; "commandToExecute" = "powershell -ExecutionPolicy Unrestricted -File cse-script.ps1"};
 
-#run command
-Set-AzVMExtension -ResourceGroupName <resourceGroupName> `
-    -Location <locationName> `
-    -VMName <vmName> `
-    -Name "buildserver1" `
+$resourceGroupName = "lab-01-77"
+$location = "northeurope"
+$vmName = "vmx-ne-cpuutil-01-02"
+$deployTag =  "tag" + -join ((65..90) + (97..122) | Get-Random -Count 5 | ForEach-Object {[char]$_})
+
+Write-Host "Deplying extenstion to" $vmName
+Write-Host $deployTag 
+Set-AzVMExtension -ResourceGroupName $resourceGroupName `
+    -Location $location `
+    -VMName $vmName `
+    -Name "CPUPerfLab" `
     -Publisher "Microsoft.Compute" `
     -ExtensionType "CustomScriptExtension" `
-    -TypeHandlerVersion "1.10" `
+    -TypeHandlerVersion "1.1" `
     -Settings $settings `
-    -ProtectedSettings $protectedSettings;
+    -ProtectedSettings $protectedSettings `
+    -ForceRerun $deployTag;
