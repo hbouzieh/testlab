@@ -14,7 +14,7 @@ function Run-CPU-Cycles {
 
     $NumberOfLogicalProcessors = Get-WmiObject win32_processor | Select-Object -ExpandProperty NumberOfLogicalProcessors
 
-    Write-EventLog -Message "Starting $NumberOfLogicalProcessors threads" -LogName "Application" -Source EventSystem -EventId 1 -EntryType Information
+    Write-EventLog -Message "Starting $NumberOfLogicalProcessors threads" -LogName "Application" -Source EventSystem -EventId 1010 -EntryType Information
 
     ForEach ($core in 1..$NumberOfLogicalProcessors) { 
 
