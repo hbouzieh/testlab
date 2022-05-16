@@ -4,7 +4,7 @@ $ErrorActionPreference = "Stop"
 
 $regPath = "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce"
 $regName = "RunCpuStressTest"
-$execPath = $MyInvocation.MyCommand.Path
+$execPath = powershell.exe -ExecutionPolicy Unrestricted -File $MyInvocation.MyCommand.Path\cse-script.ps1
 
 # Set this script running every time OS started 
 New-ItemProperty -Path $regPath -Name $regName -Value $execPath -PropertyType String -Force | Out-Null
