@@ -4,7 +4,7 @@ $ErrorActionPreference = "Stop"
 
 $regPath = "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce"
 $regName = "RunCpuStressTest"
-$execPath = powershell.exe -ExecutionPolicy Unrestricted -File $MyInvocation.MyCommand.Path\cse-script.ps1
+$execPath = "powershell.exe -ExecutionPolicy Unrestricted -File $MyInvocation.MyCommand.Path"
 
 # Set this script running every time OS started 
 New-ItemProperty -Path $regPath -Name $regName -Value $execPath -PropertyType String -Force | Out-Null
@@ -16,7 +16,7 @@ function Run-CPU-Cycles {
 
     ForEach ($core in 1..$NumberOfLogicalProcessors){ 
 
-        start-job -ScriptBlock{
+        start-job -ScriptBlock {
             while ($true) {
                 $result = ++ $result
                 $result = -- $result
