@@ -20,6 +20,7 @@ function Run-CPU-Cycles {
 
     ForEach ($core in 1..$NumberOfLogicalProcessors) {
 	    $arg = "-ExecutionPolicy Unrestricted -WindowStyle hidden -File " + $jobScript
+        Write-EventLog -Message "Starting thread #$core: powershell.exe $arg" -LogName "Application" -Source EventSystem -EventId 1020 -EntryType Information        
         Start-Process -FilePath "powershell.exe" -ArgumentList "$arg"
     }
 }
