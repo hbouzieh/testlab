@@ -1,5 +1,5 @@
 # CPU workload generatior 
-# v0.5 alpha
+# v0.6 alpha
 $ErrorActionPreference = "Stop"
 
 $regPath = "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce"
