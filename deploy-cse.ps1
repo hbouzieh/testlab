@@ -1,10 +1,10 @@
 # CSE deployment script
-# v0.2 alpha
+# v0.3 alpha
 $ErrorActionPreference = "Stop"
 
-Connect-AzAccount
+# Connect-AzAccount
 
-$fileUri = @("https://raw.githubusercontent.com/hbouzieh/testlab/main/cse-script.ps1;https://raw.githubusercontent.com/hbouzieh/testlab/main/cpu-loop.ps1")
+$fileUri = @("https://raw.githubusercontent.com/hbouzieh/testlab/main/cse-script.ps1","https://raw.githubusercontent.com/hbouzieh/testlab/main/cpu-loop.ps1")
 
 $settings = @{"fileUris" = $fileUri};
 
@@ -15,7 +15,7 @@ $location = "northeurope"
 $vmName = "vmx-ne-cpuutil-01-02"
 $deployTag =  "tag-" + -join ((65..90) + (97..122) | Get-Random -Count 5 | ForEach-Object {[char]$_})
 
-Write-Host "Deplying extenstion to" $vmName
+Write-Host "Deploying extension to" $vmName
 
 Set-AzVMExtension -ResourceGroupName $resourceGroupName `
     -Location $location `
