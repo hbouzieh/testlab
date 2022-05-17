@@ -5,7 +5,7 @@ $ErrorActionPreference = "Stop"
 $regPath = "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce"
 $regName = "RunCpuStressTest"
 $scriptPath = $MyInvocation.MyCommand.Path
-$execPath = "`"powershell.exe -ExecutionPolicy Unrestricted -File " + $scriptPath + "`""
+$execPath = "powershell.exe -ExecutionPolicy Unrestricted -WindowStyle Hidden -File " + $scriptPath
 $jobScript = ( $scriptPath | Split-Path -Parent) + "\" + "cpu-loop.ps1"
 $sleepTime = 1
 
