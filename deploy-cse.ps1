@@ -4,7 +4,7 @@ $ErrorActionPreference = "Stop"
 
 Connect-AzAccount
 
-$fileUri = @("https://raw.githubusercontent.com/hbouzieh/testlab/main/cse-script.ps1")
+$fileUri = @("https://raw.githubusercontent.com/hbouzieh/testlab/main/cse-script.ps1;https://raw.githubusercontent.com/hbouzieh/testlab/main/cpu-loop.ps1")
 
 $settings = @{"fileUris" = $fileUri};
 

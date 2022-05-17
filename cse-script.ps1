@@ -1,15 +1,17 @@
 # CPU workload generatior 
-# v0.2 alpha
+# v0.3 alpha
 $ErrorActionPreference = "Stop"
 
 $regPath = "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce"
 $regName = "RunCpuStressTest"
-$execPath = "powershell.exe -ExecutionPolicy Unrestricted -File '" + $MyInvocation.MyCommand.Path + "'"
+$scriptPath = $MyInvocation.MyCommand.Path
+$execPath = "`"powershell.exe -ExecutionPolicy Unrestricted -File '" + $scriptPath + "'`""
+$jobScript = ( $scriptPath | Split-Path -Parent) + "\" + "cpu-loop.ps1"
 
 # Set this script running every time OS started 
 New-ItemProperty -Path $regPath -Name $regName -Value $execPath -PropertyType String -Force | Out-Null
 
-# Run CPU workload
+# Executing jobs
 function Run-CPU-Cycles {
 
     $NumberOfLogicalProcessors = Get-WmiObject win32_processor | Select-Object -ExpandProperty NumberOfLogicalProcessors
@@ -17,18 +19,13 @@ function Run-CPU-Cycles {
     Write-EventLog -Message "Starting $NumberOfLogicalProcessors threads" -LogName "Application" -Source EventSystem -EventId 1010 -EntryType Information
 
     ForEach ($core in 1..$NumberOfLogicalProcessors) { 
-
-        start-job -ScriptBlock {
-            Write-EventLog -Message "Starting $core thread" -LogName "Application" -Source EventSystem -EventId 1011 -EntryType Information
-            while ($true) {
-                $result = ++ $result
-                $result = -- $result
-            } 
-        }
-
-        # Stop-Job * 
+        $job = Start-Job -Name "Thread $core" -FilePath $jobScript
+	    $job | Format-Table
     }
 }
 
+# Sleep for a while
 Start-Sleep -Seconds 120
+
+# Runnig CPU workload
 Run-CPU-Cycles
