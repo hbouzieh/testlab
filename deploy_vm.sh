@@ -3,17 +3,17 @@
 SUB=c8be08fd-adfc-4cd8-a24a-95960884bccb
 DC=01
 LABN=77
-DCN=ne
+DCN=neu
 LOC=northeurope
-PREFIX=cpuutil
-VMN=02
+PREFIX=cpulab
+VMN=03
 ADM=adm-01
 PASS=""
 # VM OPTIONS
 RG=lab-$DC-$LABN
 HOSTNAME=$PREFIX-$DC-$VMN
 VMNAME=vmx-$DCN-$HOSTNAME
-IMAGE=MicrosoftWindowsServer:WindowsServer:2019-Datacenter-smalldisk:latest
+IMAGE=Canonical:0001-com-ubuntu-server-focal:20_04-lts-gen2:latest
 SIZE=Standard_D2as_v4
 VIPSKU=Basic
 STORSKU=Premium_LRS
