@@ -1,19 +1,17 @@
 # CPU workload generatior 
-# v0.6 alpha
+# v0.7 alpha
 $ErrorActionPreference = "Stop"
 
-$regPath = "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce"
-$regName = "RunCpuStressTest"
 $scriptPath = $MyInvocation.MyCommand.Path
 $execPath = "powershell.exe -ExecutionPolicy Unrestricted -WindowStyle Hidden -File " + $scriptPath
 $jobScript = ( $scriptPath | Split-Path -Parent) + "\" + "cpu-loop.ps1"
 $sleepTime = 1
 
 # Set this script running every time OS started 
-New-ItemProperty -Path $regPath -Name $regName -Value $execPath -PropertyType String -Force
+# New-ItemProperty -Path $regPath -Name $regName -Value $execPath -PropertyType String -Force
 
 # Executing jobs
-function Run-CPU-Cycles {
+function RunCPUCycles {
 
     $NumberOfLogicalProcessors = Get-WmiObject win32_processor | Select-Object -ExpandProperty NumberOfLogicalProcessors
 
@@ -32,4 +30,4 @@ Write-EventLog -Message "Sleep $sleepTime sec before start..." -LogName "Applica
 Start-Sleep -Seconds $sleepTime
 
 # Runnig CPU workload
-Run-CPU-Cycles
+RunCPUCycles
