@@ -1,5 +1,5 @@
 $resourceGroupName = "lab-01-77"
-$vmName = "vmx-ne-cpuutil-01-02"
+$vmName = "vmx-neu-cpulab-01-01"
 
 # Connect-AzAccount
 # Set-AzContext -Subscription c8be08fd-adfc-4cd8-a24a-95960884bccb
