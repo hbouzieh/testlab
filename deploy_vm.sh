@@ -6,7 +6,7 @@ LABN=77
 DCN=neu
 LOC=northeurope
 PREFIX=cpulab
-VMN=01
+VMN=02
 ADM=adm-01
 PASS=""
 # VM OPTIONS

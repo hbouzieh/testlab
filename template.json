@@ -1,0 +1,103 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "extensions_CPUPerfLabSvc_commandToExecute": {
+            "type": "SecureString"
+        },
+        "virtualMachines_vmx_neu_cpulab_01_02_name": {
+            "defaultValue": "vmx-neu-cpulab-01-02",
+            "type": "String"
+        },
+        "disks_vmx_neu_cpulab_01_02_OsDisk_1_d3aae4e9d55c434ca5f614d37a3954aa_externalid": {
+            "defaultValue": "/subscriptions/c8be08fd-adfc-4cd8-a24a-95960884bccb/resourceGroups/lab-01-77/providers/Microsoft.Compute/disks/vmx-neu-cpulab-01-02_OsDisk_1_d3aae4e9d55c434ca5f614d37a3954aa",
+            "type": "String"
+        },
+        "networkInterfaces_vmx_neu_cpulab_01_02VMNic_externalid": {
+            "defaultValue": "/subscriptions/c8be08fd-adfc-4cd8-a24a-95960884bccb/resourceGroups/lab-01-77/providers/Microsoft.Network/networkInterfaces/vmx-neu-cpulab-01-02VMNic",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2022-03-01",
+            "name": "[parameters('virtualMachines_vmx_neu_cpulab_01_02_name')]",
+            "location": "northeurope",
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_D2as_v4"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "MicrosoftWindowsServer",
+                        "offer": "WindowsServer",
+                        "sku": "2019-Datacenter-smalldisk",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Windows",
+                        "name": "[concat(parameters('virtualMachines_vmx_neu_cpulab_01_02_name'), '_OsDisk_1_d3aae4e9d55c434ca5f614d37a3954aa')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Premium_LRS",
+                            "id": "[parameters('disks_vmx_neu_cpulab_01_02_OsDisk_1_d3aae4e9d55c434ca5f614d37a3954aa_externalid')]"
+                        },
+                        "deleteOption": "Detach",
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "cpulab-01-02",
+                    "adminUsername": "adm-01",
+                    "windowsConfiguration": {
+                        "provisionVMAgent": true,
+                        "enableAutomaticUpdates": true,
+                        "patchSettings": {
+                            "patchMode": "AutomaticByOS",
+                            "assessmentMode": "ImageDefault"
+                        }
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true,
+                    "requireGuestProvisionSignal": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_vmx_neu_cpulab_01_02VMNic_externalid')]"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "apiVersion": "2022-03-01",
+            "name": "[concat(parameters('virtualMachines_vmx_neu_cpulab_01_02_name'), '/CPUPerfLabSvc')]",
+            "location": "northeurope",
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_vmx_neu_cpulab_01_02_name'))]"
+            ],
+            "properties": {
+                "autoUpgradeMinorVersion": true,
+                "publisher": "Microsoft.Compute",
+                "type": "CustomScriptExtension",
+                "typeHandlerVersion": "1.1",
+                "settings": {
+                    "fileUris": [
+                        "https://raw.githubusercontent.com/hbouzieh/testlab/main/cse-script.ps1",
+                        "https://raw.githubusercontent.com/hbouzieh/testlab/main/cpu-loop.ps1",
+                        "https://raw.githubusercontent.com/hbouzieh/testlab/main/RunAsService.exe",
+                        "https://raw.githubusercontent.com/hbouzieh/testlab/main/cse-svc-inst.ps1"
+                    ],
+                    "commandToExecute": "[parameters('extensions_CPUPerfLabSvc_commandToExecute')]"
+                },
+                "protectedSettings": {}
+            }
+        }
+    ]
+}

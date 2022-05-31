@@ -1,0 +1,18 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "extensions_CPUPerfLabSvc_commandToExecute": {
+            "value": null
+        },
+        "virtualMachines_vmx_neu_cpulab_01_02_name": {
+            "value": null
+        },
+        "disks_vmx_neu_cpulab_01_02_OsDisk_1_d3aae4e9d55c434ca5f614d37a3954aa_externalid": {
+            "value": null
+        },
+        "networkInterfaces_vmx_neu_cpulab_01_02VMNic_externalid": {
+            "value": null
+        }
+    }
+}

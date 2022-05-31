@@ -1,0 +1,87 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "northeurope"
+        },
+        "subnetName": {
+            "value": "lan-01-01"
+        },
+        "virtualNetworkId": {
+            "value": "/subscriptions/648ebd52-803c-4288-a2c6-fb6e22feb655/resourceGroups/lab-01-01/providers/Microsoft.Network/virtualNetworks/net-01-01"
+        },
+        "privateIpAddress": {
+            "value": "10.1.1.28"
+        },
+        "privateIPAllocationMethod": {
+            "value": "Dynamic"
+        },
+        "publisher": {
+            "value": "MicrosoftWindowsDesktop"
+        },
+        "offer": {
+            "value": "Windows-10"
+        },
+        "sku": {
+            "value": "20h1-pro"
+        },
+        "version": {
+            "value": "latest"
+        },
+        "virtualMachineName": {
+            "value": "vmx-01-28"
+        },
+        "osDiskType": {
+            "value": "Premium_LRS"
+        },
+        "diskSizeGb": {
+            "value": 128
+        },
+        "virtualMachineSize": {
+            "value": "Standard_F4s_v2"
+        },
+        "networkInterfaceName": {
+            "value": "nic-01-28"
+        },
+        "publicIpAddressName": {
+            "value": "vip-01-28"
+        },
+        "publicIpAddressType": {
+            "value": "Dynamic"
+        },
+        "publicIpAddressSku": {
+            "value": "Basic"
+        },
+        "networkSecurityGroupId": {
+            "value": "/subscriptions/648ebd52-803c-4288-a2c6-fb6e22feb655/resourceGroups/lab-01-01/providers/Microsoft.Network/networkSecurityGroups/nsg-01-01"
+        },
+        "adminUsername": {
+            "value": "adm-01"
+        },
+        "adminPassword": {
+            "value": "CegthGfcc123"
+        },
+        "diagnosticsStorageAccountName": {
+            "value": "lab0101str01"
+        },
+        "autoShutdownStatus": {
+            "value": "Enabled"
+        },
+        "autoShutdownTime": {
+            "value": "19:00"
+        },
+        "autoShutdownTimeZone": {
+            "value": "UTC"
+        },
+        "autoShutdownNotificationStatus": {
+            "value": "Disabled"
+        },
+        "autoShutdownNotificationLocale": {
+            "value": "en"
+        },
+        "autoShutdownNotificationEmail": {
+            "value": "ivrusako@microsoft.com"
+        }
+    }
+}

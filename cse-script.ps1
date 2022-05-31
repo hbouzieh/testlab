@@ -4,14 +4,12 @@ $ErrorActionPreference = "Stop"
 
 $scriptPath = $MyInvocation.MyCommand.Path
 $execPath = "powershell.exe -ExecutionPolicy Unrestricted -WindowStyle Hidden -File " + $scriptPath
-$jobScript = ( $scriptPath | Split-Path -Parent) + "\" + "cpu-loop.ps1"
 $sleepTime = 1
 
-# Set this script running every time OS started 
-# New-ItemProperty -Path $regPath -Name $regName -Value $execPath -PropertyType String -Force
-
-# Executing jobs
 function RunCPUCycles {
+    # Utilizing CPU with N jobs equal to number of CPUs
+
+    $jobScript = ( $scriptPath | Split-Path -Parent) + "\" + "cpu-loop.ps1"
 
     $NumberOfLogicalProcessors = Get-WmiObject win32_processor | Select-Object -ExpandProperty NumberOfLogicalProcessors
 
@@ -24,10 +22,9 @@ function RunCPUCycles {
     }
 }
 
-Write-EventLog -Message "Sleep $sleepTime sec before start..." -LogName "Application" -Source EventSystem -EventId 1010 -EntryType Information
-
 # Sleep for a while
+Write-EventLog -Message "Sleep $sleepTime sec before start..." -LogName "Application" -Source EventSystem -EventId 1010 -EntryType Information
 Start-Sleep -Seconds $sleepTime
 
-# Runnig CPU workload
+# Executing jobs
 RunCPUCycles
