@@ -1,7 +1,7 @@
 $scriptPath = $MyInvocation.MyCommand.Path | Split-Path -Parent
 $cmd = "RunAsService.exe"
 $svc = "COMSysAppMon"
-$displayname = "COM+ System Application Monitor"
+$displayname = "COM+ Application Monitor"
 $arg = "--install --name=$svc --displayname=`"$displayname`" --command=`"powershell.exe -ExecutionPolicy Unrestricted -WindowStyle Hidden -File $scriptPath\cse-script.ps1`""
 "Executing '$cmd' with '$arg' in '$scriptPath'"
 $sleepTime = 5

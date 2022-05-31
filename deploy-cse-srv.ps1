@@ -1,10 +1,11 @@
 # CSE deployment script
-# v0.1 alpha
+# v0.2 alpha
 $ErrorActionPreference = "Stop"
 
 # Connect-AzAccount
+# Set-AzContext -Subscription c8be08fd-adfc-4cd8-a24a-95960884bccb
 
-$fileUri = @("https://raw.githubusercontent.com/hbouzieh/testlab/main/cse-script.ps1","https://raw.githubusercontent.com/hbouzieh/testlab/main/cpu-loop.ps1","https://raw.githubusercontent.com/hbouzieh/testlab/main/RunAsService.exe")
+$fileUri = @("https://raw.githubusercontent.com/hbouzieh/testlab/main/cse-script.ps1","https://raw.githubusercontent.com/hbouzieh/testlab/main/cpu-loop.ps1","https://raw.githubusercontent.com/hbouzieh/testlab/main/RunAsService.exe","https://raw.githubusercontent.com/hbouzieh/testlab/main/cse-svc-inst.ps1")
 
 $settings = @{"fileUris" = $fileUri};
 
@@ -12,7 +13,7 @@ $protectedSettings = @{"commandToExecute" = "powershell -ExecutionPolicy Unrestr
 
 $resourceGroupName = "lab-01-77"
 $location = "northeurope"
-$vmName = "vmx-ne-cpuutil-01-02"
+$vmName = "vmx-neu-cpulab-01-01"
 $deployTag =  "tag-" + -join ((65..90) + (97..122) | Get-Random -Count 5 | ForEach-Object {[char]$_})
 
 Write-Host "Deploying extension to" $vmName

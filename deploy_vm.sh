@@ -6,14 +6,14 @@ LABN=77
 DCN=neu
 LOC=northeurope
 PREFIX=cpulab
-VMN=04
+VMN=01
 ADM=adm-01
 PASS=""
 # VM OPTIONS
 RG=lab-$DC-$LABN
 HOSTNAME=$PREFIX-$DC-$VMN
 VMNAME=vmx-$DCN-$HOSTNAME
-IMAGE=Canonical:0001-com-ubuntu-server-focal:20_04-lts-gen2:latest
+IMAGE=MicrosoftWindowsServer:WindowsServer:2019-Datacenter-smalldisk:latest
 SIZE=Standard_D2as_v4
 VIPSKU=Basic
 STORSKU=Premium_LRS
