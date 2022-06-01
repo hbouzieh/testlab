@@ -6,9 +6,9 @@ LABN=77
 DCN=neu
 LOC=northeurope
 PREFIX=cpulab
-VMN=02
+VMN=04
 ADM=adm-01
-PASS=""
+PASS="P@ssw0rd-123"
 # VM OPTIONS
 RG=lab-$DC-$LABN
 HOSTNAME=$PREFIX-$DC-$VMN
