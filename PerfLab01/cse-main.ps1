@@ -1,7 +1,7 @@
 New-Item -Path "c:\" -Name "raw" -ItemType "directory" | Out-Null
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-$fileUri = @("https://raw.githubusercontent.com/hbouzieh/testlab/main/cse-script.ps1","https://raw.githubusercontent.com/hbouzieh/testlab/main/cpu-loop.ps1","https://raw.githubusercontent.com/hbouzieh/testlab/main/RunAsService.exe","https://raw.githubusercontent.com/hbouzieh/testlab/main/cse-svc-inst.ps1")
+$fileUri = @("https://raw.githubusercontent.com/hbouzieh/testlab/main/PerfLab01/cse-script.ps1","https://raw.githubusercontent.com/hbouzieh/testlab/main/PerfLab01/cpu-loop.ps1","https://raw.githubusercontent.com/hbouzieh/testlab/main/PerfLab01/RunAsService.exe","https://raw.githubusercontent.com/hbouzieh/testlab/main/PerfLab01/cse-svc-inst.ps1")
 $path = "C:\raw\"
 ForEach ($url in $fileUri) {
 Write-host "$url"
