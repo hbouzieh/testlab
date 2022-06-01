@@ -9,6 +9,10 @@ $extensionName = "CPUPerfLabSvc"
 
 $fileUri = @("https://raw.githubusercontent.com/hbouzieh/testlab/main/cse-script.ps1","https://raw.githubusercontent.com/hbouzieh/testlab/main/cpu-loop.ps1","https://raw.githubusercontent.com/hbouzieh/testlab/main/RunAsService.exe","https://raw.githubusercontent.com/hbouzieh/testlab/main/cse-svc-inst.ps1")
 
+ForEach ($file in 1..$fileUri) {
+    wget ...
+}
+
 $settings = @{"fileUris" = $fileUri};
 
 $protectedSettings = @{"commandToExecute" = "powershell -ExecutionPolicy Unrestricted -File cse-svc-inst.ps1"};
