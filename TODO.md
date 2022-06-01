@@ -16,6 +16,8 @@
 - Spaces in path are not supported for --install option 
 
 ## Testing
+Start with deploy-cse-srv.ps1 to deploy extension on VM.
+
 - [ ] Windows images:
   - [ ] 2012
   - [ ] 2016
