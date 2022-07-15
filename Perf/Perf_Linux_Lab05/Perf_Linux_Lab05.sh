@@ -30,4 +30,4 @@ echo "*/5 * * * * notsuspectingatall --cpu 1 -t 4m >/dev/null 2>&1" >> mycron
 
 #install new cron file
 crontab mycron
-rm mycron
+#rm mycron
