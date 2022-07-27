@@ -8,14 +8,21 @@ apt install -y sysstat
 
 
 
-#Prepare disk 1 /dev/sdc
+#	Determine Disks 
+OSDISK=` sfdisk -l | awk '/Linux/ && $7 == "filesystem" { gsub("[0-9]", "", $1); split($1, a, "/"); print a[3]; }' `
+TEMPDISK=` sfdisk -l | awk '$7 == "HPFS/NTFS/exFAT" { gsub("[0-9]", "", $1); split($1, a, "/"); print a[3]; }' `
+DATA0=` lsblk | grep sd | grep -v $OSDISK | grep -v $TEMPDISK | awk '{print $1}' | sed -n '1p'`
+
+
+#Prepare data drive
 mkdir /datadrive
-parted /dev/sdc --script mklabel gpt mkpart xfspart xfs 0% 100%
+parted /dev/$DATA0 --script mklabel gpt mkpart xfspart xfs 0% 100%
 sleep 3
-mkfs.xfs /dev/sdc1
-partprobe /dev/sdc1
-diskuuid="$(blkid -s UUID -o value /dev/sdc1)"
+mkfs.xfs /dev/"$DATA0"1
+partprobe /dev/"$DATA0"1
+diskuuid="$(blkid -s UUID -o value /dev/"$DATA0"1)"
 echo "UUID=${diskuuid} /datadrive xfs defaults,nofail 0 0" >> /etc/fstab
+
 
 #Mount DIsks
 mount -a
