@@ -11,7 +11,7 @@ mkdir /scripts
 
 #Scripts
 echo "#!/bin/bash
-stress-ng --vm 60 --vm-bytes 100M --timeout 18000s" > /scripts/stress.sh
+stress-ng --vm 1 --vm-bytes 7G --timeout 18000s" > /scripts/stress.sh
 chmod +x /scripts/stress.sh
 
 #Add crontab
