@@ -2,6 +2,7 @@
 
 #Install fio
 apt-get update -y
+sleep 10
 apt-get install -y fio
 apt-get install -y iotop
 apt-get install -y sysstat
