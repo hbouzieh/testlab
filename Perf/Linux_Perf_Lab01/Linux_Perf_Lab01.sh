@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #Install fio
-apt update -y
-apt install -y fio
-apt install -y iotop
-apt install -y sysstat
+apt-get update -y
+apt-get install -y fio
+apt-get install -y iotop
+apt-get install -y sysstat
 
 
 
