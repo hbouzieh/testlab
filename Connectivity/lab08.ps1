@@ -1,3 +1,3 @@
 cmd.exe
 bcdedit /set {current} safeboot network
-Restart-Computer
+Shutdown /r -t 0
