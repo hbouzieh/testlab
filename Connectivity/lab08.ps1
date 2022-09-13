@@ -1,2 +1,2 @@
-cmd.exe /r "bcdedit /set {current} safeboot network"
+cmd.exe /C "bcdedit /set {current} safeboot network"
 Restart-Computer
