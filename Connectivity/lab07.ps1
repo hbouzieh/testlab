@@ -1,2 +1,3 @@
-Set-Service –Name dhcp –StartupType “Disabled”
+cmd.exe
+sc config dhcp start= disabled
 Shutdown /r -t 15
