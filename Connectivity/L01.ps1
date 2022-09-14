@@ -1,1 +1,1 @@
-cmd.exe /C "sysprep.exe /generalize /reboot /oobe"
+cmd.exe /C "%windir%\system32\sysprep\sysprep.exe /generalize /reboot /oobe"
