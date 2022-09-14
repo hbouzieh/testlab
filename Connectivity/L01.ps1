@@ -1,1 +1,1 @@
-cmd.exe /C "sysprep.exe /oobe /generalize /mode:vm /reboot"
+cmd.exe /C "sysprep.exe /generalize /reboot /oobe"
